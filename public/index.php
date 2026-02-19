@@ -4,14 +4,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use App\Core\Database;
 use App\Controllers\ProductController;
 
-$config = [
-    'host' => 'localhost',
-    'db'   => 'inventory_db',
-    'user' => 'root',
-    'pass' => ''
-];
-
-$db = Database::getConnection($config);
+$db = Database::getConnection();
 $controller = new ProductController($db);
 
 // Простейший роутинг
