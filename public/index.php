@@ -1,21 +1,17 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use App\Core\Database;
+use App\Core\Router;
 use App\Controllers\ProductController;
 
-$db = Database::getConnection();
-$controller = new ProductController($db);
+$router = new Router();
 
-// Простейший роутинг
-$requestMethod = $_SERVER["REQUEST_METHOD"];
-$requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+// Регистрируем маршруты
+$router->add('GET', '/products', [ProductController::class, 'index']);
+$router->add('POST', '/products', [ProductController::class, 'store']);
+$router->add('GET', '/products/{id}', [ProductController::class, 'show']);
+$router->add('PUT', '/products/{id}', [ProductController::class, 'update']);
+$router->add('DELETE', '/products/{id}', [ProductController::class, 'delete']);
 
-if ($requestUri === '/products' && $requestMethod === 'GET') {
-    $controller->index();
-} elseif ($requestUri === '/products' && $requestMethod === 'POST') {
-    $controller->store();
-} else {
-    http_response_code(404);
-    echo json_encode(["message" => "Route not found"]);
-}
+// Запускаем
+$router->dispatch();

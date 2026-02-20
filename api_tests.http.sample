@@ -1,0 +1,41 @@
+### Переменные (чтобы не писать каждый раз)
+@baseUrl = https://localhost/inventory_management_system/public
+
+### 1. Получить все товары
+GET {{baseUrl}}/products
+Accept: application/json
+
+###
+
+### 2. Создать новый товар
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+    "name": "Hetzner Cloud Server",
+    "sku": "HTZ-001",
+    "quantity": 5,
+    "price": 12.50
+}
+
+###
+
+### 3. Получить один товар по ID (замени 1 на реальный ID из базы)
+GET {{baseUrl}}/products/1
+Accept: application/json
+
+###
+
+### 4. Обновить товар
+PUT {{baseUrl}}/products/1
+Content-Type: application/json
+
+{
+    "name": "Updated Server Name",
+    "price": 15.00
+}
+
+###
+
+### 5. Удалить товар
+DELETE {{baseUrl}}/products/1
