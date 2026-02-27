@@ -4,5 +4,7 @@ CREATE TABLE IF NOT EXISTS `products` (
   `sku` VARCHAR(50) UNIQUE NOT NULL,
   `quantity` INT DEFAULT 0,
   `price` DECIMAL(10, 2) NOT NULL,
-  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  INDEX `idx_products_name` (`name`),
+  INDEX `idx_products_created_at` (`created_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
