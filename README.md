@@ -1,23 +1,65 @@
-# Vanilla PHP REST API
-A high-performance, framework-free RESTful API for inventory management.
+# Simple Inventory Management System (REST API)
 
-## Key Highlights
+A lightweight, high-performance PHP REST API designed for inventory tracking. Built with a focus on clean architecture, security, and scalability.
 
-+ Architecture: Clean MVC-like structure with a Single Entry Point.
+## 🚀 Key Highlights
 
-+ Database: Secure implementation using PHP Data Objects (PDO) with prepared statements.
+* **Architecture:** Clean MVC-inspired structure with a **Single Entry Point** (`public/index.php`) and a custom **dynamic Router**.
+* **Database:** Secure implementation using **PDO** with prepared statements to prevent SQL injection.
+* **Performance:** Zero-framework overhead, optimized for high-load microservices.
+* **Standards:** Fully compliant with **PSR-4** namespacing for clean and predictable dependency management.
+* **Environment:** Ready for **Docker** deployment (PHP-FPM, Nginx, MySQL).
 
-+ Speed: Minimal overhead, optimized for high-load microservices.
+## 🛠 Tech Stack
+* PHP 8.x (Native)
+* MySQL 8.0
+* Composer (PSR-4 Autoloading)
+* Docker & Docker-Compose
 
-+ Composer Autoload: Standard PSR-4 namespacing for clean dependency management.
+## 📂 API Endpoints
 
-## API Endpoints
-- `GET /products` — Get all products.
-- `POST /products` — Create a new product.
-- Body: `{"name": "Laptop", "sku": "LT-100", "quantity": 10, "price": 999.99}`
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| `GET` | `/products` | Retrieve all products from the database |
+| `GET` | `/products/{id}` | Retrieve a specific product by ID |
+| `POST` | `/products` | Create a new product |
+| `PUT` | `/products/{id}` | Update an existing product |
+| `DELETE` | `/products/{id}` | Remove a product from inventory |
 
-## Testing the API:
+### Example POST Request Body:
+```json
+{
+    "name": "Hetzner Cloud Server",
+    "sku": "HTZ-001",
+    "quantity": 10,
+    "price": 12.50
+}
+```
 
-+ Copy api_tests.http.sample to api_tests.http.
-+ Update the @baseUrl variable with your local or server URL.
-+ Use the VS Code REST Client extension to run requests.
+###  🧪 Testing the API
+I've included a pre-configured testing suite for VS Code REST Client:
+
+- Install the REST Client extension in VS Code.
+
+- Copy api_tests.http.sample to api_tests.http.
+
+- Update the @baseUrl variable with your local or server URL.
+
+- Open the file and click "Send Request" above any method.
+
+### ⚙️ Installation
+Clone the repository:
+
+```bash
+git clone https://github.com/Deorgss/inventory_management_system.git
+```
+
+Install dependencies:
+
+```bash
+composer install
+```
+
+- Set up your .env file (see .env.example).
+
+- Import the database schema from database.sql
